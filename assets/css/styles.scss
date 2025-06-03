@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Mathjax/LaTeX stylings
+.math {
+  &.math-inline {
+    @apply inline-block;
+  }
+
+  &.math-display {
+    @apply overflow-x-auto;
+  }
+
+  &.math-display svg {
+    @apply block mx-auto;
+  }
+}
