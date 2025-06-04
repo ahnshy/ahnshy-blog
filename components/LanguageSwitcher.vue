@@ -48,19 +48,19 @@ function closePopup() {
       class="absolute -bottom-[100px] right-0 top-8 bg-white rounded-lg ring-1 ring-slate-900/10 shadow-lg overflow-hidden w-36 py-1 text-sm text-slate-700 font-semibold dark:bg-slate-800 dark:ring-slate-600 dark:highlight-white/5 dark:text-slate-300 mt-4"
     >
       <NuxtLink
-        :to="switchLocalePath('fr')"
+        :to="switchLocalePath('kr')"
         @click="closePopup"
         class="language"
-        title="Passer au français"
+        title="Switch to Korea"
       >
         <span class="block">
           <NuxtImg
-            src="/images/flag-france.svg"
-            alt="The flag of France"
+            src="/images/flag-korea.svg"
+            alt="The flag of Korea"
             class="h-6"
           />
         </span>
-        <span class="block"> Français </span>
+        <span class="block"> 한국어 </span>
       </NuxtLink>
       <NuxtLink
         :to="switchLocalePath('en')"
