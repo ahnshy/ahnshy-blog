@@ -18,29 +18,59 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
+      charset: "utf-8",
+      viewport: "width=device-width, initial-scale=1.0",
+      title: "Nuxt Content Template",
       meta: [
         {
-          name: 'google-site-verification',
-          content: process.env.NUXT_GOOGLE_SITE_VERIFICATION || ''
+          name: "description",
+          content:
+              "A hand-crafted feature-rich document driven template powered by Nuxt and Nuxt Content.",
         },
       ],
-      script: [
+      link: [
         {
-          type: 'text/javascript',
-          src: 'https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js',
-          'data-name': 'bmc-button',
-          'data-slug': 'youngjinkwak',
-          'data-color': '#FFDD00',
-          'data-emoji': '',
-          'data-font': 'Cookie',
-          'data-text': 'Buy me a coffee',
-          'data-outline-color': '#000000',
-          'data-font-color': '#000000',
-          'data-coffee-color': '#ffffff',
-        }
-      ]
-    }
+          rel: "icon",
+          type: "image/svg+xml",
+          href: "/nuxt.svg",
+        },
+      ],
+      htmlAttrs: {
+        lang: "en",
+      },
+      bodyAttrs: {
+        class: "dark:bg-slate-800 dark:text-gray-50 text-gray-800",
+      },
+    },
   },
+  modules: [
+    "@nuxt/content",
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/color-mode",
+    "@nuxtjs/i18n",
+    "@nuxt/image",
+  ],
+  extends: ["nuxt-seo-kit"],
+  tailwindcss: {
+    configPath: "./tailwind.config.js",
+    cssPath: "./assets/css/styles.scss",
+    viewer: false,
+  },
+  content: {
+    documentDriven: true,
+    highlight: {
+      theme: {
+        default: "github-light",
+        dark: "github-dark",
+      },
+      preload: ["cpp", "csharp", "rust", "wenyan", "yaml", "latex"],
+    },
+    markdown: {
+      remarkPlugins: ["remark-math"],
+      rehypePlugins: ["rehype-mathjax"],
+    },
+  },
+  colorMode: { classSuffix: "" },
   i18n: {
     locales: [
       {
@@ -54,46 +84,20 @@ export default defineNuxtConfig({
         file: 'ko.ts',
       },
     ],
-    strategy: 'prefix_and_default',
+    langDir: "locales",
     lazy: true,
-    langDir: 'locales',
-    defaultLocale: 'en',
-    // vueI18n: './i18n.config.ts' // if you are using custom path, default
+    defaultLocale: "en",
   },
-  content: {
-    //highlight: {
-      // theme: {
-      //   default: 'github-light',
-      //   // light: 'github-light',
-      //   dark: 'github-dark',
-      // },
-      //theme: 'github-dark',
-    //},
-    markdown: {
-      toc: {
-        depth: 5, searchDepth: 5
-      },
-      remarkPlugins: ['remark-reading-time'],
+  runtimeConfig: {
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://example.com",
+      siteName: "Nuxt Content Template",
+      siteDescription:
+          "A Nuxt3 template built specifically for documentations and blogs.",
+      language: "en",
     },
   },
-  googleFonts: {
-    display: 'swap',
-    download: true,
-    families: {
-      Roboto: true,
-      'Noto Sans': true,
-    }
+  image: {
+    provider: "netlify", // Use your own provider!
   },
-  site: {
-    indexable: true,
-    url: process.env.NUXT_PUBLIC_SITE_URL,
-  },
-  sitemap: {
-    // https://nuxtseo.com/sitemap/integrations/content
-    strictNuxtContentPaths: true
-  },
-  gtag: {
-    id: process.env.GTAG_ID,
-  }
-  // devtools: { enabled: true },
-})
+});
