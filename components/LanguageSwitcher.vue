@@ -48,7 +48,7 @@ function closePopup() {
       class="absolute -bottom-[100px] right-0 top-8 bg-white rounded-lg ring-1 ring-slate-900/10 shadow-lg overflow-hidden w-36 py-1 text-sm text-slate-700 font-semibold dark:bg-slate-800 dark:ring-slate-600 dark:highlight-white/5 dark:text-slate-300 mt-4"
     >
       <NuxtLink
-        :to="switchLocalePath('kr')"
+        :to="switchLocalePath('ko')"
         @click="closePopup"
         class="language"
         title="Switch to Korea"
